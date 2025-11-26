@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sloppa Choppa</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: url('1920x1080.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial Black', sans-serif;
+      color: #f8e08c;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+      transition: background-position 0.2s ease;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 700px;
+    }
+
+    .ca-box {
+      font-family: monospace;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 10px;
+      padding: 12px 28px;
+      color: #f8e08c;
+      font-size: 0.95rem;
+      box-shadow: 0 0 15px rgba(255,215,0,0.3);
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #ffd700, #ff8800);
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      animation: glow 2.5s infinite ease-in-out;
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 15px rgba(255,215,0,0.3); }
+      50% { box-shadow: 0 0 25px rgba(255,215,0,0.8); transform: scale(1.05); }
+    }
+
+    .text-blocks {
+      margin-top: 40px;
+      z-index: 1;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #f9e9b2;
+      margin-bottom: 25px;
+      background: rgba(0,0,0,0.4);
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="ca-box">CA: Ccwhm7H4VaXWNLiGck6gYsksd9HS32zMvxpB1E6pump </div>
+    <a href="https://x.com/i/communities/1987998813408149835" target="_blank" class="btn">Join X Community</a>
+
+    <div class="text-blocks">
+      <p>🐷 I wake up, eat, smile, and eat again. No one said happiness can’t smell like bacon.</p>
+      <p>My lifestyle? Simple.
+Don’t hurry, stay full, look amazing.</p>
+      <p>Sometimes I look in the mirror and say,
+“Yeah, I earned this day.”</p>
+      <p>Not every hero wears a cape.
+Some just oink and vibe.</p>
+    </div>
+  </div>
+
+  <script>
+    // 🌀 фоновое покачивание
+    let posX = 50, posY = 50;
+    function moveBackground() {
+      posX += Math.sin(Date.now() / 1500) * 0.1;
+      posY += Math.cos(Date.now() / 2000) * 0.1;
+      document.body.style.backgroundPosition = `${posX}% ${posY}%`;
+      requestAnimationFrame(moveBackground);
+    }
+    moveBackground();
+
+    // 🪶 покачивание текста
+    const texts = document.querySelectorAll('.text-blocks p');
+    texts.forEach((p, i) => {
+      let dir = i % 2 === 0 ? 1 : -1;
+      setInterval(() => {
+        p.style.transform = `translateY(${Math.sin(Date.now() / 1000 + i) * 5 * dir}px)`;
+      }, 50);
+    });
+
+    // ✨ случайные вращения текста
+    setInterval(() => {
+      texts.forEach((p, i) => {
+        if (Math.random() > 0.8) {
+          p.style.transform += ` rotate(${(Math.random() - 0.5) * 6}deg)`;
+        }
+      });
+    }, 2000);
+  </script>
+</body>
+</html>
